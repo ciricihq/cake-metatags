@@ -1,49 +1,41 @@
 language: php
 
-sudo: false
-
 php:
-  - 5.5
   - 5.6
   - 7.0
 
-# Environment Variables to set
+sudo: false
+
 env:
   global:
-    # Contains a $GITHUB_TOKEN env var for use with composer to avoid API limits.
-    - secure: "Wt/bbqQuU3oT/1lKz+Wn1CyEacXsSqUPRhuhDj2mZm7AqRd5d5a8Nu6AU4LDNBFP7IBxywIbPVcgjOwf0OVnlHkdVcFHWWuZrIX2joM+pf6Sv4mSPvbeHj2i3IVnwkwHnMi/m4PR4GzGShbcl5NwXcoWjYZ/ZOoTJoaAyeRU4lE="
+    - DEFAULT=1
 
+matrix:
+  fast_finish: true
 
-# Cache the composer directories, only allowed if using the container based setup
-# which depends on setting sudo to false
-cache:
-  directories:
-    - $HOME/.composer/cache
+  include:
+    - php: 5.6
+      env: PHPCS=1 DEFAULT=0
 
-# Branches to be built or not
-branches:
-  # Blacklist these branches
-  except:
-    - gh-pages
-
-before_install:
-  - composer self-update
-  - mkdir -p build/logs
+    - php: 5.6
+      env: COVERALLS=1 DEFAULT=0
 
 install:
-  - composer config -g github-oauth.github.com $GITHUB_TOKEN
-  - composer install --no-interaction
+  - composer self-update
+  - composer install --prefer-dist --no-interaction --dev
 
 before_script:
+  - sh -c "if [ '$COVERALLS' = '1' ]; then composer require --dev satooshi/php-coveralls:dev-master; fi"
+  - sh -c "if [ '$COVERALLS' = '1' ]; then mkdir -p build/logs; fi"
+
   - phpenv rehash
-  - vendor/bin/phpcs --config-set installed_paths vendor/loadsys/loadsys_codesniffer,vendor/cakephp/cakephp-codesniffer
+  - set +H
 
 script:
-  - vendor/bin/phpcs -np --extensions=php --standard=Loadsys ./src ./tests
-  - vendor/bin/phpunit --coverage-clover=build/logs/clover.xml
-
-after_script:
-  - php vendor/bin/coveralls -v
+  - sh -c "if [ '$DEFAULT' = '1' ]; then phpunit --stderr; fi"
+  - sh -c "if [ '$PHPCS' = '1' ]; then ./vendor/bin/phpcs -p --extensions=php --ignore=tests/bootstrap.php --standard=vendor/ciricihq/cirici-codesniffer/Cirici ./src ./tests; fi"
+  - sh -c "if [ '$COVERALLS' = '1' ]; then phpunit --stderr --coverage-clover build/logs/clover.xml; fi"
+  - sh -c "if [ '$COVERALLS' = '1' ]; then php vendor/bin/coveralls -c .coveralls.yml -v; fi"
 
 notifications:
 email: false

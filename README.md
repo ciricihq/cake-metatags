@@ -7,7 +7,6 @@ Metatags plugin for CakePHP 3
 [![License][license svg]][license]
 [![Latest stable version][releases svg]][releases]
 [![Total downloads][downloads svg]][downloads]
-[![Code climate][climate svg]][climate]
 
 [build status]: https://travis-ci.org/ciricihq/cake-metatags
 [coveralls]: https://coveralls.io/github/ciricihq/cake-metatags

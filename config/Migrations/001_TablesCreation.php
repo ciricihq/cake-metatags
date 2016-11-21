@@ -31,7 +31,7 @@ class TablesCreation extends AbstractMigration
             ->addColumn('value', 'string')
             ->addColumn('created', 'datetime')
             ->addColumn('modified', 'datetime')
-            ->addIndex(['model', 'foreing_key'])
+            ->addIndex(['model', 'foreign_key'])
             ->addIndex('metatag_id')
             ->create()
         ;

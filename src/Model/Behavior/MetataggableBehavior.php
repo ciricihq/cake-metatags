@@ -11,12 +11,12 @@ use Cake\Datasource\ResultSetInterface;
 use Cake\ORM\Entity;
 
 /**
- * Metatagable behavior
+ * Metataggable behavior
  */
-class MetatagableBehavior extends Behavior
+class MetataggableBehavior extends Behavior
 {
     protected $_defaultConfig = [
-        'metatagableClass'  => 'Metataggeds',
+        'metataggableClass'  => 'Metataggeds',
         'foreignKey'          => 'foreign_key',
         'title'               => 'Club Metropolitan',
         'description'         => '',
@@ -33,7 +33,7 @@ class MetatagableBehavior extends Behavior
         $config = $this->config();
         $model = Inflector::singularize($this->_table->registryAlias());
         $this->_table->hasMany('Metataggeds', array(
-            'className'  => $config['metatagableClass'],
+            'className'  => $config['metataggableClass'],
             'foreignKey' => $config['foreignKey'],
             'conditions' => [
                 'Metataggeds.model' => $model

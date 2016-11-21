@@ -29,6 +29,16 @@ The recommended way to install composer packages is:
 ```
 composer require ciricihq/cake-metatags
 ```
+Execute migration
+
+```
+bin/cake migrations migrate --plugin Cirici/Metatags
+```
+Execute seed
+
+```
+bin/cake migrations seed --plugin Cirici/Metatags
+```
 
 Configuration
 -------------

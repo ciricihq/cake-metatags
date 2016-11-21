@@ -38,7 +38,7 @@ class MetatagsTable extends Table
 
         $this->hasMany('Metataggeds', [
             'foreignKey' => 'metatag_id',
-            'className' => 'Metatags.Metataggeds'
+            'className'  => 'Cirici\Metatags.Metataggeds'
         ]);
     }
 

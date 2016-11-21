@@ -23,6 +23,8 @@ class MetataggableBehavior extends Behavior
         'keywords'            => ''
     ];
 
+    protected $metatags = [];
+
     public function __construct(Table $Table, array $config = [])
     {
         parent::__construct($Table, $config);
@@ -39,7 +41,6 @@ class MetataggableBehavior extends Behavior
                 'Metataggeds.model' => $model
             ]
         ));
-        $metatags = null;
     }
 
     public function beforeFind(Event $event, Query $query, ArrayObject $options, $primary)

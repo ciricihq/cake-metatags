@@ -22,7 +22,7 @@ class TablesCreation extends AbstractMigration
                 'limit' => 45,
                 'null' => false,
             ])
-            ->addColumn('foreing_key', 'integer')
+            ->addColumn('foreign_key', 'integer')
             ->addColumn('metatag_id', 'integer')
             ->addColumn('language', 'string', [
                 'limit' => 45,

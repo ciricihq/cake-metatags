@@ -1,6 +1,8 @@
 <?php
 namespace Cirici\Metatags\Model\Entity;
 
+use Cake\ORM\Entity;
+
 /**
  * Metatagged Entity.
  */

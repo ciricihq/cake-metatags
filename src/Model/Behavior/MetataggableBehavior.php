@@ -51,7 +51,7 @@ class MetataggableBehavior extends Behavior
     {
         return $query
             ->contain(['Metataggeds.Metatags'])
-            ->formatResults(function ($results) {
+            ->formatResults(function($results) {
                 return $this->mapResults($results);
             })
         ;
@@ -59,20 +59,20 @@ class MetataggableBehavior extends Behavior
 
     public function mapResults(CollectionInterface $results) {
         $this->metatags = $results->first()->metataggeds;
-        return $results->map(function ($entity) {
+        return $results->map(function($entity) {
             return $this->mapEntity($entity);
         });
     }
 
     public function mapEntity(Entity $entity) {
         foreach ($this->metatags as $metatags) {
-            if($metatags->metatag['name'] == 'title') {
+            if ($metatags->metatag['name'] == 'title') {
                 $entity['_title'] = $metatags->value;
             }
-            if($metatags->metatag['name'] == 'description') {
+            if ($metatags->metatag['name'] == 'description') {
                 $entity['_description'] = $metatags->value;
             }
-            if($metatags->metatag['name'] == 'keywords') {
+            if ($metatags->metatag['name'] == 'keywords') {
                 $entity['_keywords'] = $metatags->value;
             }
         }

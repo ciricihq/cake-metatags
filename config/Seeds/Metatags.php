@@ -11,18 +11,18 @@ class Metatags extends AbstractSeed
             'name' => 'title',
             'type' => ''
         ];
-        $table->insert($data)->save;
+        $table->insert($data)->save();
 
         $data = [
             'name' => 'description',
             'type' => 'textarea'
         ];
-        $table->insert($data)->save;
+        $table->insert($data)->save();
 
         $data = [
             'name' => 'keywords',
             'type' => 'textarea'
         ];
-        $table->insert($data)->save;
+        $table->insert($data)->save();
     }
 }

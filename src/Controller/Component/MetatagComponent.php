@@ -37,7 +37,7 @@ class MetatagComponent extends Component
         if (isset($config['field'])) {
             $this->field = $config['field'];
         }
-        TableRegistry::get($this->model)->addBehavior('Cirici/Metatags.Metataggeable');
+        TableRegistry::get($this->model)->addBehavior('Cirici/Metatags.Metatageable');
     }
     public function beforeRender(Event $event)
     {

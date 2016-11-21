@@ -17,7 +17,7 @@ class PagesControllerTest extends IntegrationTestCase
         $this->assertResponseOk();
         $this->assertResponseContains('title');
         $Pages = TableRegistry::get('Pages');
-        $this->assertTrue($Pages->hasBehavior('Metataggeable'));
+        $this->assertTrue($Pages->hasBehavior('Metatageable'));
 
     }
 }

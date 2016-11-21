@@ -16,7 +16,7 @@ use Cake\Utility\Inflector;
 class MetataggableBehavior extends Behavior
 {
     protected $_defaultConfig = [
-        'metatagableClass'    => 'Cirici/Metatags.Metataggeds',
+        'metataggableClass'    => 'Cirici/Metatags.Metataggeds',
         'foreignKey'          => 'foreign_key',
         'title'               => 'Club Metropolitan',
         'description'         => '',

@@ -58,14 +58,16 @@ class MetataggableBehavior extends Behavior
         ;
     }
 
-    public function mapResults(CollectionInterface $results) {
+    public function mapResults(CollectionInterface $results)
+    {
         $this->metatags = $results->first()->metataggeds;
         return $results->map(function($entity) {
             return $this->mapEntity($entity);
         });
     }
 
-    public function mapEntity(Entity $entity) {
+    public function mapEntity(Entity $entity)
+    {
         foreach ($this->metatags as $metatags) {
             if ($metatags->metatag['name'] == 'title') {
                 $entity['_title'] = $metatags->value;

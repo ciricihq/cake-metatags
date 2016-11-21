@@ -1,14 +1,14 @@
 <?php
 namespace Cirici\Metatags\Model\Behavior;
 
+use ArrayObject;
+use Cake\Collection\CollectionInterface;
+use Cake\Event\Event;
 use Cake\ORM\Behavior;
+use Cake\ORM\Entity;
+use Cake\ORM\Query;
 use Cake\ORM\Table;
 use Cake\Utility\Inflector;
-use Cake\Event\Event;
-use Cake\ORM\Query;
-use ArrayObject;
-use Cake\Datasource\ResultSetInterface;
-use Cake\ORM\Entity;
 
 /**
  * Metataggable behavior
@@ -57,7 +57,7 @@ class MetataggableBehavior extends Behavior
         ;
     }
 
-    public function mapResults(ResultSetInterface $results) {
+    public function mapResults(CollectionInterface $results) {
         $this->metatags = $results->first()->metataggeds;
         return $results->map(function ($entity) {
             return $this->mapEntity($entity);
